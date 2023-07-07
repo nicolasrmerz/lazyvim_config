@@ -9,8 +9,10 @@ return {
       sources = {
         nls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
         nls.builtins.formatting.isort,
-        -- Ignored warning already handled by pyright
-        nls.builtins.diagnostics.flake8.with({ extra_args = { "--ignore=F401,F821" } }),
+        -- Ignore warnings already handled by pyright (F401, F821)
+        -- E501 is line too long which is annoyingly common
+        -- W503 is "Line break occurred before a binary operator" which seems to conflict with a formatter
+        nls.builtins.diagnostics.flake8.with({ extra_args = { "--ignore=F401,F821,E501,W503" } }),
       },
     }
   end,
